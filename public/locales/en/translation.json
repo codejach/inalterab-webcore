@@ -1,0 +1,16 @@
+{
+  "already_registered": "Already registered?",
+  "change_language": "Change language",
+  "configuration": "Configuration",
+  "create_an_account": "Create an account",
+  "logout": "Logout",
+  "nickname": "Nickname",
+  "not_registered": "Not registered?",
+  "password": "Password",
+  "password_confirm": "Confirm password",
+  "save": "Save",
+  "sign_in": "Sign in",
+  "sign_up": "Sign up",
+  "user": "User",
+  "your_account": "Your account"
+}
