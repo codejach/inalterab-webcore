@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavbarCenter from '../navbar/navbarCenter';
 import NavbarRight from '../navbar/navbarRight';
 
