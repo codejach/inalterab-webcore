@@ -1,20 +1,26 @@
 // Libraries
 import { Path } from "react-hook-form";
-
-// Components
-import IInput from "../../domains/interfaces/IInput";
+import IInput from "../../domains/core/interfaces/components/input/IInput";
 
 // Component
-function Input1<T>({ name, placeholder, required, type, register }: IInput<T>) {
+function Input1<T>({
+  maxLength,
+  name,
+  placeholder,
+  required,
+  type,
+  register,
+}: IInput<T>) {
   return (
     <input
       autoComplete="off"
-      className="uk-input uk-form-small" 
+      className="uk-input uk-form-small"
+      maxLength={maxLength}
       placeholder={placeholder}
       type={type}
       {...register(name as Path<T>, { required: required })}
     />
-  )
+  );
 }
 
-export default Input1
+export default Input1;

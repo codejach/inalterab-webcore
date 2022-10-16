@@ -22,27 +22,31 @@ const UserAccount = () => {
   const {
     handleSubmit,
     register,
+    resetField,
     formState: { errors },
   } = useForm<IUserAccountRequest>({
     resolver: joiResolver(UserAccountValidator),
   });
 
   const user = appState.config.auth.user!;
-
-  const onSubmit: SubmitHandler<IUserAccountRequest> = async (data) => {
-    const payload = {
-      _id: user.id!,
-      nickname: data.nickname,
-    };
-    if (!errors.hasOwnProperty()) await update(payload);
-  };
-
   const userAccountParams: IInput<IUserAccount> = {
     name: "nickname",
     placeholder: user.nickname || t(c.nickname),
     required: true,
     register: register,
     type: "text",
+    maxLength: 20,
+  };
+
+  const onSubmit: SubmitHandler<IUserAccountRequest> = async (data) => {
+    const payload = {
+      _id: user.id!,
+      nickname: data.nickname,
+    };
+    if (!errors.hasOwnProperty()) {
+      await update(payload);
+      resetField('nickname')
+    }
   };
 
   return (
@@ -59,6 +63,7 @@ const UserAccount = () => {
           <span className="uk-form-icon" data-uk-icon="icon: user"></span>
           <Input<IUserAccount> {...userAccountParams} />
         </div>
+        <p className="uk-margin-small uk-text-small uk-text-warning">{ errors.nickname?.message }</p>
       </div>
       <div className="uk-margin-small">
         <button

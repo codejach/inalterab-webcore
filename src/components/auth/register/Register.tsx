@@ -29,11 +29,17 @@ const Register = () => {
   const {
     handleSubmit, 
     register, 
+    resetField,
     formState: { errors }
   } = useForm<IRegisterRequest>({ resolver: joiResolver(RegisterValidator) })
 
   const onSubmit:SubmitHandler<IRegisterRequest> = async data => {
-    if (!errors.hasOwnProperty()) await registerUser(data).unwrap()
+    if (!errors.hasOwnProperty()) {
+      await registerUser(data);
+      resetField('account');
+      resetField('password');
+      resetField('passwordConfirm');
+    }
   }
   
   if (appState.config.auth.authenticated) {
@@ -41,6 +47,7 @@ const Register = () => {
   }
 
   const accountParams: IInput<IRegisterRequest> = {
+    maxLength: 256,
     name: 'account',
     placeholder: t(c.user),
     required: true,
@@ -48,6 +55,7 @@ const Register = () => {
     type: 'text'
   }
   const passwordParams: IInput<IRegisterRequest> = {
+    maxLength: 20,
     name: 'password',
     placeholder: t(c.password),
     required: true,
@@ -55,6 +63,7 @@ const Register = () => {
     type: 'password'
   }
   const passwordConfirmParams: IInput<IRegisterRequest> = {
+    maxLength: 20,
     name: 'passwordConfirm',
     placeholder: t(c.password_confirm),
     required: true,

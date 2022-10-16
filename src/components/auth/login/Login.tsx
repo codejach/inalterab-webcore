@@ -23,21 +23,30 @@ import LoginValidator from "./LoginValidator"
 
 // Component
 const Login = () => {
-  const appState = useAppSelector(state => state.app) as IAppState 
-  const { t } = useTranslation()
+  const appState = useAppSelector((state) => state.app) as IAppState;
+  const { t } = useTranslation();
   const [login, { isLoading }] = useLoginMutation();
-  const { handleSubmit, register, formState: { errors } } 
-    = useForm<ILoginRequest>({ resolver: joiResolver(LoginValidator) })
+  const {
+    handleSubmit,
+    register,
+    resetField,
+    formState: { errors },
+  } = useForm<ILoginRequest>({ resolver: joiResolver(LoginValidator) });
 
-  const onSubmit:SubmitHandler<ILoginRequest> = async data => {
-    if (!errors.hasOwnProperty()) await login(data)
-  }
+  const onSubmit: SubmitHandler<ILoginRequest> = async (data) => {
+    if (!errors.hasOwnProperty()) {
+      await login(data);
+      resetField("account");
+      resetField("password");
+    }
+  };
   
   if (appState.config.auth.authenticated) {
     return (<Navigate replace to="/" />)
   }
 
   const accountParams: IInput<ILoginRequest> = {
+    maxLength: 256,
     name: 'account',
     placeholder: t(c.user),
     required: true,
@@ -45,6 +54,7 @@ const Login = () => {
     type: 'text'
   }
   const passwordParams: IInput<ILoginRequest> = {
+    maxLength: 20,
     name: 'password',
     placeholder: t(c.password),
     required: true,
