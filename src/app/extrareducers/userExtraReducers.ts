@@ -10,16 +10,16 @@ export function userUpdateMatchFulFilled(
   state: IAppState,
   action: PayloadAction<IResponse<IUserAccountResult>>
 ) {
-  const result = action.payload.result || {};
+  const response = action.payload || {};
 
   const user = {
     ...UserBasicState,
-    ...result.user,
-    id: result.user._id
+    ...response.result.user,
+    id: response.result.user._id
   };
 
   state.config.auth.user = user;
-  state.ui.messages.push(action.payload.message);
+  state.ui.messages.push(response.message);
 
   return state;
 }

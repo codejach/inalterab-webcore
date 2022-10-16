@@ -11,14 +11,14 @@ export function loginMatchFulFilled(
   state: IAppState,
   action: PayloadAction<IResponse<ILoginResult>>
 ) {
-  const result = action.payload.result || {};
+  const response = action.payload || {};
 
   const auth = {
     ...AuthState,
-    ...result,
+    ...response.result,
     user: {
-      ...result.user,
-      id: result.user._id,
+      ...response.result.user,
+      id: response.result.user._id,
     },
   };
 
@@ -32,7 +32,7 @@ export function loginMatchFulFilled(
 
   state.config.auth = auth;
   state.ui = ui;
-  state.ui.messages.push(action.payload.message);
+  state.ui.messages.push(response.message);
 
   return state;
 }
@@ -41,11 +41,15 @@ export function registerMatchFulFilled(
   state: IAppState,
   action: PayloadAction<IResponse<IRegisterResult>>
 ) {
-  const result = action.payload.result || {};
+  const response = action.payload || {};
 
   let auth = {
     ...AuthState,
-    ...result,
+    ...response.result,
+    user: {
+      ...response.result.user,
+      id: response.result.user._id,
+    },
   };
 
   let ui = {
@@ -58,7 +62,7 @@ export function registerMatchFulFilled(
 
   state.config.auth = auth;
   state.ui = ui;
-  state.ui.messages.push(action.payload.message);
+  state.ui.messages.push(response.message);
 
   return state;
 }
