@@ -14,7 +14,7 @@ function Input1<T>({
   return (
     <input
       autoComplete="off"
-      className="uk-input uk-form-small"
+      className="uk-input"
       maxLength={maxLength}
       placeholder={placeholder}
       type={type}

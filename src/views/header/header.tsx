@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import NavbarCenter from '../navbar/navbarCenter';
 import NavbarRight from '../navbar/navbarRight';
 
-import './header.css'
-
 const Header = () => {
   return (
     <div className="uk-container uk-navbar-container uk-container-expand">

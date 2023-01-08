@@ -110,7 +110,7 @@ const Register = () => {
     							<div className="uk-margin-small">
     								<button 
                       type="submit"
-                      className="uk-button uk-button-small uk-width-1-1"
+                      className="uk-button uk-width-1-1"
                       disabled={ isLoading }
                       >{ t(c.sign_in) }</button>
     							</div>
