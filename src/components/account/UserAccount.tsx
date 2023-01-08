@@ -50,30 +50,11 @@ const UserAccount = () => {
   };
 
   return (
-    <form
-      className="uk-grid-small"
-      onSubmit={handleSubmit(onSubmit)}
-      data-uk-grid
-    >
-      <div className="uk-width-1-6 uk-margin-small">
-        <div className="uk-text-small uk-text-bottom">{t(c.nickname)}</div>
-      </div>
-      <div className="uk-margin-small">
-        <div className="uk-inline">
-          <span className="uk-form-icon" data-uk-icon="icon: user"></span>
-          <Input<IUserAccount> {...userAccountParams} />
-        </div>
-        <p className="uk-margin-small uk-text-small uk-text-warning">{ errors.nickname?.message }</p>
-      </div>
-      <div className="uk-margin-small">
-        <button
-          type="submit"
-          className="uk-button uk-button-small uk-width-1-1"
-          disabled={isLoading}
-        >
-          {t(c.save)}
-        </button>
-      </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label>{t(c.nickname)}</label>
+      <Input<IUserAccount> {...userAccountParams} />
+      <span>{ errors.nickname?.message }</span>
+      <button type="submit" className="uk-button" disabled={isLoading}>{t(c.save)}</button>
     </form>
   );
 };

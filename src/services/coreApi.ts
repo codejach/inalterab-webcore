@@ -8,6 +8,8 @@ import IRegisterRequest from "../domains/core/interfaces/request/IRegisterReques
 import IResponse from "../domains/core/interfaces/response/IResponse";
 import IUserAccountResult from "../domains/core/interfaces/response/user/IUserAccountResult";
 import IUserAccountRequest from "../domains/core/interfaces/request/IUserAccountRequest";
+import IPermissionResult from "../domains/core/interfaces/response/auth/IPermissionResult";
+import IPermissionRequest from "../domains/core/interfaces/request/IPermissionRequest";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -27,14 +29,21 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation<IResponse<ILoginResult>, ILoginRequest>({
       query: (payload) => ({
-        url: "/signin",
+        url: "/signup",
         method: "POST",
         body: JSON.stringify(payload),
       }),
     }),
+    permission: builder.mutation<IResponse<IPermissionResult>, IPermissionRequest>({
+      query: (payload) => ({
+        url: "/permission",
+        method: "POST",
+        body: JSON.stringify(payload),
+      })
+    }),
     register: builder.mutation<IResponse<IRegisterResult>, IRegisterRequest>({
       query: (payload) => ({
-        url: "/signup",
+        url: "/signin",
         method: "POST",
         body: JSON.stringify(payload),
       }),

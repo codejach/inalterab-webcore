@@ -3,6 +3,7 @@ import '../node_modules/uikit/dist/js/uikit.min.js'
 import '../node_modules/uikit/dist/js/uikit-icons.min.js'
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
+import AdminPanel from './components/auth/admin/AdminPanel';
 import Configuration from './pages/configuration/configuration';
 import Dashboard from './pages/dashboard/dashboard';
 import Header from './views/header/header'
@@ -22,6 +23,7 @@ function App() {
         <Route path='/dashboard' element={ <Dashboard /> } />
         <Route path='/login' element={ <Login /> } />
         <Route path='/register' element={ <Register /> } />
+        <Route path='/admin/panel' element={ <AdminPanel /> } />
       </Routes>
     </BrowserRouter>
   )

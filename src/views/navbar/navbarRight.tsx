@@ -25,10 +25,9 @@ const NavbarRight = () => {
     dispatch(changeLanguage(lang))
   }
 
-  const handlerLogout = async(e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    dispatch(logout())    
-  }
+  const handlerLogout = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    dispatch(logout());
+  };
 
   const AuthLink = () => {
     if (location.pathname == '/login') {
@@ -93,6 +92,11 @@ const NavbarRight = () => {
               <li>
                 <Link to="/config">
                   <span data-uk-icon="icon: settings" />{ t(c.configuration)}
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin/panel">
+                  <span className="uk-margin-right" data-uk-icon="icon: settings" />{ t(c.admin_panel) }
                 </Link>
               </li>
             </ul>
